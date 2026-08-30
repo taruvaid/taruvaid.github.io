@@ -1,0 +1,878 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taru Vaid | Data Science · AI · Research</title>
+
+    <meta name="description"
+          content="Taru Vaid — Data Scientist, AI Engineer and AI/ML Researcher.">
+
+    <style>
+        :root {
+            --bg: #0b0d10;
+            --surface: #11151a;
+            --surface-light: #171c22;
+            --text: #f3f4f6;
+            --muted: #9ca3af;
+            --accent: #7dd3fc;
+            --accent-2: #a78bfa;
+            --border: rgba(255,255,255,0.09);
+            --max-width: 1120px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 0 28px;
+        }
+
+        /* ---------------- NAVIGATION ---------------- */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11,13,16,0.82);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 18px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* ---------------- HERO ---------------- */
+
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(
+                circle,
+                rgba(125,211,252,0.13),
+                transparent 65%
+            );
+            top: -180px;
+            right: -120px;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(
+                circle,
+                rgba(167,139,250,0.10),
+                transparent 65%
+            );
+            bottom: -250px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+            margin-bottom: 28px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                110deg,
+                var(--accent),
+                var(--accent-2)
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 1.18rem;
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 11px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .button.primary {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+            font-weight: 600;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            border-color: rgba(125,211,252,0.5);
+        }
+
+        .button.primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ---------------- SECTIONS ---------------- */
+
+        section {
+            padding: 110px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 50px;
+            margin-bottom: 55px;
+        }
+
+        .section-number {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        .section-intro {
+            color: var(--muted);
+            max-width: 680px;
+            font-size: 1.05rem;
+        }
+
+        /* ---------------- ABOUT ---------------- */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 70px;
+        }
+
+        .about-text {
+            font-size: 1.12rem;
+            color: #d1d5db;
+        }
+
+        .about-text p + p {
+            margin-top: 22px;
+        }
+
+        .focus-list {
+            border-left: 1px solid var(--border);
+            padding-left: 28px;
+        }
+
+        .focus-list h3 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .focus-list ul {
+            list-style: none;
+        }
+
+        .focus-list li {
+            padding: 9px 0;
+            color: #d1d5db;
+        }
+
+        .focus-list li::before {
+            content: "→";
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* ---------------- PROJECTS ---------------- */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+            min-height: 230px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(125,211,252,0.28);
+            background: var(--surface-light);
+        }
+
+        .project-number {
+            color: var(--muted);
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin: 25px 0 10px;
+            letter-spacing: -0.025em;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .project-arrow {
+            margin-top: 25px;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        /* ---------------- PUBLICATIONS ---------------- */
+
+        .publication-list {
+            border-top: 1px solid var(--border);
+        }
+
+        .publication {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 30px;
+            align-items: center;
+            padding: 30px 10px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
+        }
+
+        .publication:hover {
+            background: rgba(255,255,255,0.025);
+        }
+
+        .publication-number {
+            color: var(--muted);
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .publication h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .publication-meta {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .publication-link {
+            color: var(--accent);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .publication-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------------- FOOTER ---------------- */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 45px 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* ---------------- ANIMATION ---------------- */
+
+        .fade-in {
+            animation: fadeIn 0.9s ease both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------------- MOBILE ---------------- */
+
+        @media (max-width: 760px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links li:nth-child(3) {
+                display: none;
+            }
+
+            .hero {
+                min-height: 85vh;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-heading {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .publication {
+                grid-template-columns: 40px 1fr;
+                gap: 15px;
+            }
+
+            .publication-link {
+                grid-column: 2;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+    <div class="nav-inner">
+
+        <a href="#top" class="logo">
+            Taru<span>.</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#publications">Publications</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<main id="top">
+
+<section class="hero">
+    <div class="container">
+
+        <div class="hero-content fade-in">
+
+            <div class="eyebrow">
+                Data · AI · Research
+            </div>
+
+            <h1>
+                Taru Vaid
+                <br>
+                <span class="gradient-text">
+                    Building at the intersection
+                </span>
+            </h1>
+
+            <p class="hero-description">
+                Data Scientist, AI Engineer, and AI/ML Researcher
+                exploring the intersection of mathematics, machine
+                learning, optimization, and real-world applications.
+            </p>
+
+            <div class="buttons">
+                <a href="#projects" class="button primary">
+                    Explore my work
+                </a>
+
+                <a href="#publications" class="button">
+                    Publications
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <div class="section-number">01 / ABOUT</div>
+                <h2>About me</h2>
+            </div>
+
+            <p class="section-intro">
+                I work across data science, artificial intelligence,
+                optimization, and mathematical modelling, with a focus
+                on turning complex problems into practical systems.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-text">
+
+                <p>
+                    Experienced Data Scientist, AI Engineer and AI/ML
+                    Researcher. Over 15 years of experience working
+                    across sectors and diverse problems.
+                </p>
+
+                <p>
+                    From pricing optimization and A/B testing to
+                    generative AI applications, I build digital
+                    products at scale and help bring structure to
+                    ambiguity.
+                </p>
+
+                <p>
+                    My current interests span machine learning,
+                    neural networks, mathematical modelling,
+                    optimization, and the theory behind modern AI
+                    systems.
+                </p>
+
+            </div>
+
+
+            <div class="focus-list">
+
+                <h3>Areas of interest</h3>
+
+                <ul>
+                    <li>Artificial Intelligence</li>
+                    <li>Machine Learning</li>
+                    <li>Optimization</li>
+                    <li>Mathematical Modelling</li>
+                    <li>Neural Networks</li>
+                    <li>Generative AI</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <div class="section-number">02 / PROJECTS</div>
+                <h2>Selected projects</h2>
+            </div>
+
+            <p class="section-intro">
+                A selection of problems I have explored through
+                applied data science, mathematical modelling,
+                optimization, and AI.
+            </p>
+
+        </div>
+
+
+        <div class="projects">
+
+            <article class="project-card">
+
+                <div>
+                    <div class="project-number">PROJECT / 01</div>
+
+                    <h3>Modelling Voice</h3>
+
+                    <p>
+                        Exploring voice, language, and multimodal AI
+                        through mathematical and machine learning
+                        models.
+                    </p>
+                </div>
+
+                <div class="project-arrow">↗</div>
+
+            </article>
+
+
+            <article class="project-card">
+
+                <div>
+                    <div class="project-number">PROJECT / 02</div>
+
+                    <h3>Optimization</h3>
+
+                    <p>
+                        Applied optimization across pricing, decision
+                        science, and mathematical modelling to solve
+                        complex real-world problems.
+                    </p>
+                </div>
+
+                <div class="project-arrow">↗</div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PUBLICATIONS ================= -->
+
+<section id="publications">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <div class="section-number">03 / PUBLICATIONS</div>
+                <h2>Publications</h2>
+            </div>
+
+            <p class="section-intro">
+                Writing and research spanning mathematics,
+                artificial intelligence, machine learning, and
+                differential equations.
+            </p>
+
+        </div>
+
+
+        <div class="publication-list">
+
+
+            <article class="publication">
+
+                <div class="publication-number">
+                    01
+                </div>
+
+                <div>
+                    <h3>
+                        Eigen Vectors &amp; Spectral Decomposition
+                    </h3>
+
+                    <div class="publication-meta">
+                        Taru Vaid · Towards AI
+                    </div>
+                </div>
+
+                <a
+                    class="publication-link"
+                    href="https://pub.towardsai.net/eigen-vectors-spectral-decomposition-51b129fa445d?sk=1223953cf93e1887abed32603f6154fa"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Read article ↗
+                </a>
+
+            </article>
+
+
+            <article class="publication">
+
+                <div class="publication-number">
+                    02
+                </div>
+
+                <div>
+                    <h3>
+                        Multimodal AI Systems: Real vs. Batch Processing
+                    </h3>
+
+                    <div class="publication-meta">
+                        Taru Vaid · Towards AI
+                    </div>
+                </div>
+
+                <a
+                    class="publication-link"
+                    href="https://pub.towardsai.net/multimodal-ai-systems-real-vs-batch-processing-338a71a31b52?sk=455b1a4d5db472ae15b7b1c1e200dd1a"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Read article ↗
+                </a>
+
+            </article>
+
+
+            <article class="publication">
+
+                <div class="publication-number">
+                    03
+                </div>
+
+                <div>
+                    <h3>
+                        Multimodal AI Systems: Scalability &amp; Cost Optimization
+                    </h3>
+
+                    <div class="publication-meta">
+                        Taru Vaid · Towards AI
+                    </div>
+                </div>
+
+                <a
+                    class="publication-link"
+                    href="https://pub.towardsai.net/multimodal-ai-systems-scalability-cost-optimization-74e9e73f010a?postPublishedType=repub"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Read article ↗
+                </a>
+
+            </article>
+
+
+            <article class="publication">
+
+                <div class="publication-number">
+                    04
+                </div>
+
+                <div>
+                    <h3>
+                        Differential equations
+                    </h3>
+
+                    <div class="publication-meta">
+                        Taru Vaid · Science For Life
+                    </div>
+                </div>
+
+                <a
+                    class="publication-link"
+                    href="https://medium.com/science-for-life/introduction-to-differential-equations-febd5bdb1cd3"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Read article ↗
+                </a>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-inner">
+
+            <div>
+                © 2026 Taru Vaid
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#projects">
+                    Projects
+                </a>
+
+                <a href="#publications">
+                    Publications
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+```
