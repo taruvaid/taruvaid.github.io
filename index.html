@@ -427,6 +427,10 @@ nav {
     border-left: 1px solid var(--line);
 }
 
+.about-highlight + .about-highlight {
+    margin-top: 40px;
+}
+
 .about-highlight-title {
     color: var(--muted);
 
@@ -452,6 +456,30 @@ nav {
 }
 
 .about-highlight li::before {
+    content: "→";
+
+    color: var(--cyan);
+
+    margin-right: 11px;
+}
+
+.about-links a {
+    display: block;
+
+    padding: 8px 0;
+
+    color: #d1d6de;
+
+    font-size: .96rem;
+
+    transition: color .2s ease;
+}
+
+.about-links a:hover {
+    color: var(--cyan);
+}
+
+.about-links a::before {
     content: "→";
 
     color: var(--cyan);
@@ -964,27 +992,68 @@ footer {
             </div>
 
 
-            <div class="about-highlight">
+            <div>
 
-                <div class="about-highlight-title">
-                    Focus
+                <div class="about-highlight">
+
+                    <div class="about-highlight-title">
+                        Focus
+                    </div>
+
+                    <ul>
+
+                        <li>Artificial Intelligence</li>
+
+                        <li>Machine Learning</li>
+
+                        <li>Optimization</li>
+
+                        <li>Mathematical Modelling</li>
+
+                        <li>Neural Networks</li>
+
+                        <li>Generative AI</li>
+
+                    </ul>
+
                 </div>
 
-                <ul>
 
-                    <li>Artificial Intelligence</li>
+                <div class="about-highlight">
 
-                    <li>Machine Learning</li>
+                    <div class="about-highlight-title">
+                        Connect
+                    </div>
 
-                    <li>Optimization</li>
+                    <div class="about-links">
 
-                    <li>Mathematical Modelling</li>
+                        <a href="https://www.linkedin.com/in/taruvaid/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            LinkedIn
+                        </a>
 
-                    <li>Neural Networks</li>
+                        <a href="https://github.com/taruvaid"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            GitHub
+                        </a>
 
-                    <li>Generative AI</li>
+                        <a href="https://x.com/taruvaid"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            X
+                        </a>
 
-                </ul>
+                        <a href="https://medium.com/@taruvaid"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Medium
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
