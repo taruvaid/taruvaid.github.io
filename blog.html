@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blog — Taru Vaid</title>
+
+<meta name="description"
+content="Blog notes by Taru Vaid on neural networks, optimization and mathematical machine learning.">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+    --bg: #080a0d;
+    --bg-soft: #0d1014;
+    --card: #101419;
+    --text: #f5f7fa;
+    --muted: #8d96a3;
+    --muted-light: #b5bdc8;
+    --line: rgba(255,255,255,.085);
+
+    --cyan: #75d9ff;
+    --purple: #9b8cff;
+
+    --max: 1180px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container {
+    width: min(var(--max), calc(100% - 56px));
+    margin: auto;
+}
+
+section {
+    border-top: 1px solid var(--line);
+    padding: 125px 0;
+}
+
+.section-label {
+    color: var(--cyan);
+
+    font-family: monospace;
+    font-size: .78rem;
+
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+
+    line-height: 1;
+
+    letter-spacing: -.055em;
+}
+
+.section-intro {
+    max-width: 610px;
+
+    color: var(--muted);
+
+    font-size: 1.08rem;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(8,10,13,.92),
+            rgba(8,10,13,.70)
+        );
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+    width: min(var(--max), calc(100% - 56px));
+
+    height: 74px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.05rem;
+    font-weight: 700;
+
+    letter-spacing: -.03em;
+}
+
+.logo-dot {
+    color: var(--cyan);
+}
+
+.nav-links {
+    display: flex;
+    gap: 34px;
+
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--muted);
+
+    font-size: .86rem;
+
+    transition:
+        color .25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+    min-height: 46vh;
+
+    display: flex;
+    align-items: flex-end;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding-top: 74px;
+    padding-bottom: 70px;
+}
+
+.page-header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    right: -240px;
+    top: -260px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(117,217,255,.11),
+            transparent 67%
+        );
+
+    pointer-events: none;
+}
+
+.page-header-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 800px;
+}
+
+.page-kicker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--cyan);
+
+    font-family: monospace;
+
+    font-size: .78rem;
+
+    letter-spacing: .14em;
+    text-transform: uppercase;
+
+    margin-bottom: 24px;
+}
+
+.page-kicker::before {
+    content: "";
+
+    width: 34px;
+    height: 1px;
+
+    background: var(--cyan);
+}
+
+.page-header h1 {
+    font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+
+    line-height: .98;
+
+    letter-spacing: -.055em;
+
+    font-weight: 700;
+}
+
+.page-header-description {
+    max-width: 620px;
+
+    margin-top: 26px;
+
+    color: var(--muted-light);
+
+    font-size: 1.1rem;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   BLOG TOPICS
+========================================================= */
+
+.topics-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+}
+
+.topic {
+    padding: 46px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.topic:first-child {
+    padding-top: 0;
+}
+
+.topic-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 16px;
+}
+
+.topic-number {
+    color: #68717d;
+
+    font-family: monospace;
+
+    font-size: .78rem;
+
+    letter-spacing: .08em;
+}
+
+.topic-tag {
+    color: var(--cyan);
+
+    font-family: monospace;
+
+    font-size: .72rem;
+
+    letter-spacing: .1em;
+    text-transform: uppercase;
+
+    padding: 4px 10px;
+
+    border: 1px solid rgba(117,217,255,.3);
+
+    border-radius: 20px;
+}
+
+.topic h3 {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+
+    letter-spacing: -.03em;
+
+    margin-bottom: 16px;
+}
+
+.topic p {
+    max-width: 760px;
+
+    color: var(--muted-light);
+
+    font-size: 1.03rem;
+
+    line-height: 1.85;
+}
+
+.topic-paper {
+    max-width: 760px;
+
+    margin-top: 30px;
+
+    padding: 22px 26px;
+
+    background: rgba(255,255,255,.02);
+
+    border: 1px solid var(--line);
+
+    border-left: 2px solid var(--cyan);
+
+    border-radius: 8px;
+}
+
+.topic-paper-label {
+    color: var(--cyan);
+
+    font-family: monospace;
+
+    font-size: .7rem;
+
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+}
+
+.topic-paper-title {
+    display: inline-block;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    letter-spacing: -.01em;
+
+    color: var(--text);
+
+    margin-bottom: 12px;
+
+    transition: color .2s ease;
+}
+
+.topic-paper-title:hover {
+    color: var(--cyan);
+}
+
+.topic-paper-summary {
+    color: var(--muted);
+
+    font-size: .95rem;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid var(--line);
+
+    padding: 38px 0;
+
+    color: var(--muted);
+
+    font-size: .8rem;
+}
+
+.footer-inner {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 25px;
+}
+
+.footer-links a:hover {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .container,
+    .nav-inner {
+        width: min(100% - 38px, var(--max));
+    }
+
+    section,
+    .page-header {
+        padding: 90px 0;
+    }
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .nav-links li:nth-child(3) {
+        display: none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAV
+========================================================= -->
+
+<nav>
+
+    <div class="nav-inner">
+
+        <a href="index.html#top" class="logo">
+            Taru<span class="logo-dot">.</span>
+        </a>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html#about">About</a>
+            </li>
+
+            <li>
+                <a href="index.html#publications">Publications</a>
+            </li>
+
+            <li>
+                <a href="index.html#projects">Projects</a>
+            </li>
+
+            <li>
+                <a href="blog.html" class="active">Blog</a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+
+<main id="top">
+
+
+<!-- =========================================================
+     PAGE HEADER
+========================================================= -->
+
+<section class="page-header">
+
+    <div class="container">
+
+        <div class="page-header-content">
+
+            <div class="page-kicker">
+                Blog
+            </div>
+
+            <h1>
+                Blog
+            </h1>
+
+            <p class="page-header-description">
+                Notes and working ideas on the mathematics behind
+                neural networks, optimization and machine learning
+                systems — written as I explore them.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TOPICS
+========================================================= -->
+
+<section id="topics">
+
+    <div class="container">
+
+        <div class="topics-list">
+
+
+            <article class="topic">
+
+                <div class="topic-meta">
+                    <span class="topic-number">01</span>
+                    <span class="topic-tag">Neural Networks</span>
+                </div>
+
+                <h3>
+                    Weight Initialization Schemes in Neural Network Training
+                </h3>
+
+                <p>
+                    How a network's weights are set before training
+                    has an outsized effect on whether it trains at
+                    all. Initializing weights too small causes
+                    activations and gradients to shrink toward zero
+                    as they pass through layers, while initializing
+                    them too large causes them to explode — both
+                    make deep networks hard or impossible to optimize.
+                    Schemes like Xavier (Glorot) and He initialization
+                    address this by scaling the initial weights based
+                    on the number of input and output connections at
+                    each layer, keeping the variance of activations
+                    roughly constant from layer to layer. The right
+                    choice depends on the activation function in use
+                    — Xavier pairs well with sigmoid or tanh, while He
+                    initialization is designed for ReLU-family
+                    activations — and getting this right is often the
+                    difference between a network that trains smoothly
+                    and one that never leaves a poor starting point.
+                </p>
+
+                <div class="topic-paper">
+
+                    <div class="topic-paper-label">
+                        Key paper
+                    </div>
+
+                    <a href="https://arxiv.org/abs/1502.01852"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="topic-paper-title">
+                        Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification ↗
+                    </a>
+
+                    <p class="topic-paper-summary">
+                        He et al. (2015) introduce the Parametric ReLU
+                        (PReLU), an activation that lets the negative-side
+                        slope be learned rather than fixed at zero, and
+                        pair it with an initialization scheme built
+                        specifically for ReLU-style nonlinearities — now
+                        widely known as He initialization. Earlier schemes
+                        like Xavier assumed activations that behave
+                        symmetrically around zero, an assumption ReLUs
+                        break; this method corrects for that by scaling
+                        weight variance to account for the roughly half
+                        of activations a ReLU zeroes out. With this fix,
+                        the authors were able to train much deeper
+                        rectifier networks from scratch and reported the
+                        first result to exceed human-level accuracy on
+                        the ImageNet classification benchmark.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-inner">
+
+            <div>
+                © 2026 Taru Vaid
+            </div>
+
+            <div class="footer-links">
+
+                <a href="index.html#about">
+                    About
+                </a>
+
+                <a href="index.html#publications">
+                    Publications
+                </a>
+
+                <a href="index.html#projects">
+                    Projects
+                </a>
+
+                <a href="blog.html">
+                    Blog
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
