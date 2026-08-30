@@ -1,65 +1,977 @@
 ```html
-<!-- ================= ABOUT ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Taru Vaid — AI · Data Science · Research</title>
+
+<meta name="description"
+content="Taru Vaid — Data Scientist, AI Engineer and AI/ML Researcher working across artificial intelligence, optimization, mathematics and data science.">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+    --bg: #080a0d;
+    --bg-soft: #0d1014;
+    --card: #101419;
+    --text: #f5f7fa;
+    --muted: #8d96a3;
+    --muted-light: #b5bdc8;
+    --line: rgba(255,255,255,.085);
+
+    --cyan: #75d9ff;
+    --purple: #9b8cff;
+
+    --max: 1180px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container {
+    width: min(var(--max), calc(100% - 56px));
+    margin: auto;
+}
+
+section {
+    border-top: 1px solid var(--line);
+    padding: 125px 0;
+}
+
+.section-label {
+    color: var(--cyan);
+
+    font-family: monospace;
+    font-size: .78rem;
+
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+
+    line-height: 1;
+
+    letter-spacing: -.055em;
+}
+
+.section-intro {
+    max-width: 610px;
+
+    color: var(--muted);
+
+    font-size: 1.08rem;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(8,10,13,.92),
+            rgba(8,10,13,.70)
+        );
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+    width: min(var(--max), calc(100% - 56px));
+
+    height: 74px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.05rem;
+    font-weight: 700;
+
+    letter-spacing: -.03em;
+}
+
+.logo-dot {
+    color: var(--cyan);
+}
+
+.nav-links {
+    display: flex;
+    gap: 34px;
+
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--muted);
+
+    font-size: .86rem;
+
+    transition:
+        color .25s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 94vh;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding-top: 74px;
+}
+
+
+/* ambient glow */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 720px;
+    height: 720px;
+
+    right: -260px;
+    top: -280px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(117,217,255,.12),
+            transparent 67%
+        );
+
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    left: -320px;
+    bottom: -390px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(155,140,255,.09),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1000px;
+}
+
+.hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--cyan);
+
+    font-family: monospace;
+
+    font-size: .78rem;
+
+    letter-spacing: .14em;
+    text-transform: uppercase;
+
+    margin-bottom: 28px;
+}
+
+.hero-kicker::before {
+    content: "";
+
+    width: 34px;
+    height: 1px;
+
+    background: var(--cyan);
+}
+
+.hero h1 {
+    font-size: clamp(4rem, 9vw, 8rem);
+
+    line-height: .9;
+
+    letter-spacing: -.075em;
+
+    font-weight: 700;
+
+    max-width: 950px;
+}
+
+.hero h1 .line {
+    display: block;
+}
+
+.gradient {
+    background:
+        linear-gradient(
+            110deg,
+            #79ddff 0%,
+            #b09cff 80%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 680px;
+
+    margin-top: 38px;
+
+    color: var(--muted-light);
+
+    font-size: 1.15rem;
+
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 13px;
+
+    margin-top: 36px;
+}
+
+.button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 19px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 7px;
+
+    font-size: .87rem;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(117,217,255,.4);
+}
+
+.button.primary {
+    background: #f3f5f7;
+
+    color: #080a0d;
+
+    border-color: #f3f5f7;
+
+    font-weight: 600;
+}
+
+.button.primary:hover {
+    background: var(--cyan);
+
+    border-color: var(--cyan);
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-header {
+    display: grid;
+
+    grid-template-columns: .75fr 1.25fr;
+
+    gap: 100px;
+
+    margin-bottom: 70px;
+}
+
+.about-layout {
+    display: grid;
+
+    grid-template-columns: 1.25fr .75fr;
+
+    gap: 90px;
+}
+
+.about-copy {
+    font-size: 1.15rem;
+
+    color: #d5dae1;
+
+    line-height: 1.85;
+}
+
+.about-copy p + p {
+    margin-top: 24px;
+}
+
+.about-highlight {
+    padding-left: 28px;
+
+    border-left: 1px solid var(--line);
+}
+
+.about-highlight-title {
+    color: var(--muted);
+
+    font-size: .75rem;
+
+    letter-spacing: .12em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+}
+
+.about-highlight ul {
+    list-style: none;
+}
+
+.about-highlight li {
+    padding: 8px 0;
+
+    color: #d1d6de;
+
+    font-size: .96rem;
+}
+
+.about-highlight li::before {
+    content: "→";
+
+    color: var(--cyan);
+
+    margin-right: 11px;
+}
+
+
+/* =========================================================
+   PUBLICATIONS
+========================================================= */
+
+.publications-header {
+    display: grid;
+
+    grid-template-columns: .75fr 1.25fr;
+
+    gap: 100px;
+
+    margin-bottom: 65px;
+}
+
+.publication-list {
+    border-top: 1px solid var(--line);
+}
+
+.publication {
+    display: grid;
+
+    grid-template-columns: 65px 1fr 130px;
+
+    gap: 30px;
+
+    align-items: center;
+
+    padding: 34px 12px;
+
+    border-bottom: 1px solid var(--line);
+
+    transition:
+        background .25s ease,
+        padding .25s ease;
+}
+
+.publication:hover {
+    background: rgba(255,255,255,.025);
+
+    padding-left: 20px;
+}
+
+.pub-number {
+    color: #68717d;
+
+    font-family: monospace;
+
+    font-size: .78rem;
+}
+
+.pub-title {
+    font-size: 1.08rem;
+
+    font-weight: 600;
+
+    letter-spacing: -.015em;
+
+    margin-bottom: 5px;
+}
+
+.pub-meta {
+    color: var(--muted);
+
+    font-size: .82rem;
+}
+
+.pub-link {
+    justify-self: end;
+
+    color: var(--cyan);
+
+    font-size: .82rem;
+}
+
+.pub-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.projects-header {
+    display: grid;
+
+    grid-template-columns: .75fr 1.25fr;
+
+    gap: 100px;
+
+    margin-bottom: 65px;
+}
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.project {
+    position: relative;
+
+    min-height: 330px;
+
+    padding: 34px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #11161c,
+            #0d1116
+        );
+
+    border: 1px solid var(--line);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease;
+}
+
+.project::after {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    right: -120px;
+    bottom: -140px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(117,217,255,.09),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.project:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(117,217,255,.28);
+}
+
+.project-number {
+    color: #68717d;
+
+    font-family: monospace;
+
+    font-size: .75rem;
+
+    letter-spacing: .08em;
+}
+
+.project h3 {
+    font-size: 2rem;
+
+    letter-spacing: -.045em;
+
+    margin-top: 75px;
+
+    margin-bottom: 12px;
+}
+
+.project p {
+    max-width: 460px;
+
+    color: var(--muted);
+
+    font-size: .96rem;
+
+    line-height: 1.75;
+}
+
+.project-arrow {
+    position: absolute;
+
+    right: 30px;
+    bottom: 26px;
+
+    color: var(--cyan);
+
+    font-size: 1.3rem;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid var(--line);
+
+    padding: 38px 0;
+
+    color: var(--muted);
+
+    font-size: .8rem;
+}
+
+.footer-inner {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 25px;
+}
+
+.footer-links a:hover {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.hero-content {
+    animation:
+        heroIn .9s ease both;
+}
+
+@keyframes heroIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .container,
+    .nav-inner {
+        width: min(100% - 38px, var(--max));
+    }
+
+    section {
+        padding: 90px 0;
+    }
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .hero h1 {
+        font-size: clamp(3.5rem, 15vw, 6rem);
+    }
+
+    .about-header,
+    .publications-header,
+    .projects-header {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .publication {
+        grid-template-columns: 42px 1fr;
+
+        gap: 15px;
+    }
+
+    .pub-link {
+        grid-column: 2;
+
+        justify-self: start;
+
+        margin-top: 5px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .nav-links li:nth-child(3) {
+        display: none;
+    }
+
+    .hero {
+        min-height: 88vh;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-wrap: wrap;
+    }
+
+    .project {
+        min-height: 290px;
+    }
+
+    .project h3 {
+        margin-top: 60px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAV
+========================================================= -->
+
+<nav>
+
+    <div class="nav-inner">
+
+        <a href="#top" class="logo">
+            Taru<span class="logo-dot">.</span>
+        </a>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#publications">Publications</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+
+<main id="top">
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="hero-kicker">
+                Data · AI · Mathematics · Research
+            </div>
+
+            <h1>
+
+                <span class="line">
+                    Taru Vaid
+                </span>
+
+                <span class="line gradient">
+                    Building technology.
+                </span>
+
+                <span class="line">
+                    Driving impact.
+                </span>
+
+            </h1>
+
+            <p class="hero-description">
+                Data Scientist, AI Engineer and AI/ML Researcher
+                working at the intersection of artificial intelligence,
+                mathematical modelling, optimization and real-world
+                decision making.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#about"
+                   class="button primary">
+                    About me
+                </a>
+
+                <a href="#publications"
+                   class="button">
+                    Explore research ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
 
 <section id="about">
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="about-header">
 
             <div>
-                <div class="section-number">01 / ABOUT</div>
-                <h2>About me</h2>
+
+                <div class="section-label">
+                    01 / About
+                </div>
+
+                <h2>
+                    About me
+                </h2>
+
             </div>
 
             <p class="section-intro">
-                I work at the intersection of data science, artificial
-                intelligence, optimization, and mathematical modelling,
-                with a focus on turning complex problems into practical,
-                high-impact solutions.
+                I work across data science, artificial intelligence,
+                optimization and mathematical modelling, turning
+                complex problems into practical, high-impact solutions.
             </p>
 
         </div>
 
 
-        <div class="about-grid">
+        <div class="about-layout">
 
-            <div class="about-text">
+            <div class="about-copy">
 
                 <p>
-                    Experienced Data Scientist, AI Engineer and AI/ML
-                    Researcher with over 15 years of experience working
-                    across sectors and diverse problems.
+                    Experienced Data Scientist, AI Engineer and
+                    AI/ML Researcher with over 15 years of experience
+                    working across sectors and diverse problems.
                 </p>
 
                 <p>
                     From pricing optimization and A/B testing to
-                    generative AI applications, I build digital products
-                    at scale, drive measurable business impact, and help
-                    bring structure to ambiguity.
+                    generative AI applications, I build digital
+                    products at scale, drive measurable impact,
+                    and help bring structure to ambiguity.
                 </p>
 
                 <p>
-                    My work combines rigorous analytical thinking with
-                    practical execution — connecting mathematical ideas,
-                    machine learning, and technology to problems that
-                    matter in the real world.
+                    My work combines rigorous analytical thinking
+                    with practical execution — connecting
+                    mathematical ideas, machine learning and
+                    technology to problems that matter.
                 </p>
 
             </div>
 
 
-            <div class="focus-list">
+            <div class="about-highlight">
 
-                <h3>Areas of interest</h3>
+                <div class="about-highlight-title">
+                    Focus
+                </div>
 
                 <ul>
+
                     <li>Artificial Intelligence</li>
+
                     <li>Machine Learning</li>
+
                     <li>Optimization</li>
+
                     <li>Mathematical Modelling</li>
+
                     <li>Neural Networks</li>
+
                     <li>Generative AI</li>
+
                 </ul>
 
             </div>
@@ -71,22 +983,31 @@
 </section>
 
 
-<!-- ================= PUBLICATIONS ================= -->
+<!-- =========================================================
+     PUBLICATIONS
+========================================================= -->
 
 <section id="publications">
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="publications-header">
 
             <div>
-                <div class="section-number">02 / PUBLICATIONS</div>
-                <h2>Publications</h2>
+
+                <div class="section-label">
+                    02 / Publications
+                </div>
+
+                <h2>
+                    Selected writing
+                </h2>
+
             </div>
 
             <p class="section-intro">
-                Writing and research spanning mathematics,
-                artificial intelligence, machine learning, and
+                Research and technical writing spanning mathematics,
+                artificial intelligence, multimodal systems and
                 differential equations.
             </p>
 
@@ -98,26 +1019,28 @@
 
             <article class="publication">
 
-                <div class="publication-number">
+                <div class="pub-number">
                     01
                 </div>
 
                 <div>
-                    <h3>
-                        Eigen Vectors &amp; Spectral Decomposition
-                    </h3>
 
-                    <div class="publication-meta">
+                    <div class="pub-title">
+                        Eigen Vectors &amp; Spectral Decomposition
+                    </div>
+
+                    <div class="pub-meta">
                         Taru Vaid · Towards AI
                     </div>
+
                 </div>
 
                 <a
-                    class="publication-link"
+                    class="pub-link"
                     href="https://pub.towardsai.net/eigen-vectors-spectral-decomposition-51b129fa445d?sk=1223953cf93e1887abed32603f6154fa"
                     target="_blank"
                     rel="noopener noreferrer">
-                    Read article ↗
+                    Read ↗
                 </a>
 
             </article>
@@ -125,26 +1048,28 @@
 
             <article class="publication">
 
-                <div class="publication-number">
+                <div class="pub-number">
                     02
                 </div>
 
                 <div>
-                    <h3>
-                        Multimodal AI Systems: Real vs. Batch Processing
-                    </h3>
 
-                    <div class="publication-meta">
+                    <div class="pub-title">
+                        Multimodal AI Systems: Real vs. Batch Processing
+                    </div>
+
+                    <div class="pub-meta">
                         Taru Vaid · Towards AI
                     </div>
+
                 </div>
 
                 <a
-                    class="publication-link"
+                    class="pub-link"
                     href="https://pub.towardsai.net/multimodal-ai-systems-real-vs-batch-processing-338a71a31b52?sk=455b1a4d5db472ae15b7b1c1e200dd1a"
                     target="_blank"
                     rel="noopener noreferrer">
-                    Read article ↗
+                    Read ↗
                 </a>
 
             </article>
@@ -152,26 +1077,28 @@
 
             <article class="publication">
 
-                <div class="publication-number">
+                <div class="pub-number">
                     03
                 </div>
 
                 <div>
-                    <h3>
-                        Multimodal AI Systems: Scalability &amp; Cost Optimization
-                    </h3>
 
-                    <div class="publication-meta">
+                    <div class="pub-title">
+                        Multimodal AI Systems: Scalability &amp; Cost Optimization
+                    </div>
+
+                    <div class="pub-meta">
                         Taru Vaid · Towards AI
                     </div>
+
                 </div>
 
                 <a
-                    class="publication-link"
+                    class="pub-link"
                     href="https://pub.towardsai.net/multimodal-ai-systems-scalability-cost-optimization-74e9e73f010a?postPublishedType=repub"
                     target="_blank"
                     rel="noopener noreferrer">
-                    Read article ↗
+                    Read ↗
                 </a>
 
             </article>
@@ -179,26 +1106,28 @@
 
             <article class="publication">
 
-                <div class="publication-number">
+                <div class="pub-number">
                     04
                 </div>
 
                 <div>
-                    <h3>
-                        Differential Equations
-                    </h3>
 
-                    <div class="publication-meta">
+                    <div class="pub-title">
+                        Differential Equations
+                    </div>
+
+                    <div class="pub-meta">
                         Taru Vaid · Science For Life
                     </div>
+
                 </div>
 
                 <a
-                    class="publication-link"
+                    class="pub-link"
                     href="https://medium.com/science-for-life/introduction-to-differential-equations-febd5bdb1cd3"
                     target="_blank"
                     rel="noopener noreferrer">
-                    Read article ↗
+                    Read ↗
                 </a>
 
             </article>
@@ -211,70 +1140,133 @@
 </section>
 
 
-<!-- ================= PROJECTS ================= -->
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
 
 <section id="projects">
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="projects-header">
 
             <div>
-                <div class="section-number">03 / PROJECTS</div>
-                <h2>Selected projects</h2>
+
+                <div class="section-label">
+                    03 / Projects
+                </div>
+
+                <h2>
+                    Selected work
+                </h2>
+
             </div>
 
             <p class="section-intro">
-                Applied work spanning artificial intelligence,
-                optimization, mathematical modelling, and
+                Applied work connecting mathematical thinking,
+                artificial intelligence, optimization and
                 real-world decision systems.
             </p>
 
         </div>
 
 
-        <div class="projects">
+        <div class="projects-grid">
 
-            <article class="project-card">
 
-                <div>
-                    <div class="project-number">PROJECT / 01</div>
+            <article class="project">
 
-                    <h3>Modelling Voice</h3>
-
-                    <p>
-                        Exploring voice, language, and multimodal AI
-                        through mathematical and machine learning
-                        models.
-                    </p>
+                <div class="project-number">
+                    PROJECT / 01
                 </div>
 
-                <div class="project-arrow">↗</div>
+                <h3>
+                    Modelling Voice
+                </h3>
+
+                <p>
+                    Exploring voice, language and multimodal AI
+                    through mathematical and machine learning
+                    models.
+                </p>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
 
             </article>
 
 
-            <article class="project-card">
+            <article class="project">
 
-                <div>
-                    <div class="project-number">PROJECT / 02</div>
-
-                    <h3>Optimization</h3>
-
-                    <p>
-                        Applying mathematical optimization, data science,
-                        and decision modelling to complex real-world
-                        problems and high-impact business decisions.
-                    </p>
+                <div class="project-number">
+                    PROJECT / 02
                 </div>
 
-                <div class="project-arrow">↗</div>
+                <h3>
+                    Optimization
+                </h3>
+
+                <p>
+                    Applying mathematical optimization, data science
+                    and decision modelling to complex real-world
+                    problems and high-impact decisions.
+                </p>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
 
             </article>
+
 
         </div>
 
     </div>
 
 </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-inner">
+
+            <div>
+                © 2026 Taru Vaid
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#publications">
+                    Publications
+                </a>
+
+                <a href="#projects">
+                    Projects
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
 ```
